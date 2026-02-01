@@ -1,0 +1,20 @@
+services:
+  Mich418\ShopwareCustomFieldsSync\:
+    resource: '../../*'
+    exclude:
+      - '../../DependencyInjection/'
+      - '../../ShopwareCustomFieldsSyncBundle.php'
+
+  Mich418\ShopwareCustomFieldsSync\Sync\CustomFieldSetSynchronizer:
+    arguments:
+      $customFieldSetRepository: '@custom_field_set.repository'
+      $customFieldRepository: '@custom_field.repository'
+      $customFieldSetRelationRepository: '@custom_field_set_relation.repository'
+
+  Mich418\ShopwareCustomFieldsSync\Sync\CustomFieldSetSynchronizerInterface:
+    alias: Mich418\ShopwareCustomFieldsSync\Sync\CustomFieldSetSynchronizer
+    public: true
+
+  Mich418\ShopwareCustomFieldsSync\Config\CustomFieldsConfigLoaderInterface:
+    alias: Mich418\ShopwareCustomFieldsSync\Config\CustomFieldsConfigLoader
+    public: true
